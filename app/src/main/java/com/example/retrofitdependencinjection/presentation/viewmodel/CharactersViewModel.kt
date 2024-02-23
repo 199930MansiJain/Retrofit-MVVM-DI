@@ -10,6 +10,7 @@ import com.example.retrofitdependencinjection.domain.usecase.GetAllCharacterUseC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.w3c.dom.CharacterData
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,10 +45,15 @@ class CharactersViewModel @Inject constructor(private val useCase: GetAllCharact
                 is Resource.Success -> {
                     _isLoading.value = false
                     _response.value = it.data
+                    inserDataTODB(it.data as List<CharacterData>)
 
                 }
             }
 
         }.launchIn(viewModelScope)
+    }
+
+    private fun inserDataTODB(list : List<CharacterData>){
+        useCase.getAllDataFormLocal(list)
     }
 }

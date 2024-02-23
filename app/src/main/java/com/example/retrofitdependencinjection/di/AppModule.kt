@@ -1,5 +1,6 @@
 package com.example.retrofitdependencinjection.di
 
+import android.content.Context
 import com.example.retrofitdependencinjection.core.utils.Constants
 import com.example.retrofitdependencinjection.data.api.CharacterApi
 import com.example.retrofitdependencinjection.data.repository.CharacterRepositoryImpl
@@ -7,6 +8,7 @@ import com.example.retrofitdependencinjection.domain.repository.CharacterReposit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,6 +36,9 @@ class AppModule {
     fun provideCharacterRepository(api: CharacterApi) : CharacterRepository{
         return CharacterRepositoryImpl(api)
     }
+
+
+
 
 
 
